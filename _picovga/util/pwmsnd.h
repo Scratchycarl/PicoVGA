@@ -13,7 +13,7 @@
 #ifndef _PWMSND_H
 #define _PWMSND_H
 
-#define PWMSND_GPIO	19	// PWM output GPIO pin (0..29)
+#define PWMSND_GPIO	9	// PWM output GPIO pin (0..29)
 #define PWMSND_SLICE	((PWMSND_GPIO>>1)&7) // PWM slice index (=1)
 #define PWMSND_CHAN	(PWMSND_GPIO&1) // PWM channel index (=1)
 

@@ -82,6 +82,7 @@ int __not_in_flash_func(VgaBufProcess)()
 
 	int y0 = -1;
 	u8 linetype = ScanlineType[line];
+	gpio_put(VGA_GPIO_VSYNC, (linetype == LINE_VSYNC) ? 0 : 1);
 	switch (linetype)
 	{
 	case LINE_IMG:		// progressive image 0, 1, 2,...
@@ -573,6 +574,10 @@ void VgaDmaInit()
 void VgaPioInit()
 {
 	int i;
+	// set VSYNC output
+	gpio_init(VGA_GPIO_VSYNC);
+	gpio_put(VGA_GPIO_VSYNC, 0);
+	gpio_set_dir(VGA_GPIO_VSYNC, GPIO_OUT);
 
 	// clear PIO instruction memory 
 	pio_clear_instruction_memory(VGA_PIO);
